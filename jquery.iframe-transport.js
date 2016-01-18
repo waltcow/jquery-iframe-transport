@@ -109,6 +109,7 @@
         iframe = null,
         name = "iframe-" + $.now(),
         files = $(options.files).filter(":file:enabled"),
+        forceIframeTransport = origOptions.forceIframeTransport || false,
         markers = null,
         accepts = null;
 
@@ -135,7 +136,7 @@
     // See https://github.com/cmlenz/jquery-iframe-transport/issues/6
     options.data = origOptions.data;
 
-    if (files.length) {
+  	if (files.length || forceIframeTransport) {
       form = $("<form enctype='multipart/form-data' method='post'></form>").
         hide().attr({action: options.originalURL, target: name});
 
